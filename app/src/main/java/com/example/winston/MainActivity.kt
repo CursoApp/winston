@@ -2,10 +2,15 @@ package com.example.winston
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.recyclerview.widget.RecyclerView
+
+//import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var tipAdapter: TipAdapter
@@ -16,16 +21,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tipAdapter = TipAdapter(tipList)
-        val recyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = tipAdapter
 
-        val buttonAddTip
+        val buttonAddTip = findViewById<Button>(R.id.buttonAddTip)
         buttonAddTip.setOnClickListener {
             showAddTipDialog()
         }
 
-        val buttonCalculateTip
+        val buttonCalculateTip = findViewById<Button>(R.id.buttonCalculateTip)
         buttonCalculateTip.setOnClickListener {
             val intent = Intent(this, ResultActivity::class.java)
             intent.putExtra("TOTAL_TIPS", tipList.sum())
